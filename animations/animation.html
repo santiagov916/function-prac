@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            #container {
+                width: 400px;
+                height: 400px;
+                position: relative;
+                background: red;
+            }
+
+            #animation {
+                width: 50px;
+                height: 50px;
+                position: relative;
+                background: orange;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>This is my first animation</h1>
+        <button onclick="myMove()">Click me</button>
+        <div id="container">
+            <div id="animation">this will go here</div>
+        </div>
+    
+    <script>
+        function myMove() {
+            var element = document.getElementById('animation');
+
+            var pos = 0;
+            var id = setInterval(frame, 5);
+
+            function frame() {
+                if(pos == 350) {
+                    clearInterval(id)
+                } else {
+                    pos++;
+                    element.style.top = pos + "px";
+                    element.style.left = pos + "px";
+                }
+            }
+        }
+    </script>
+    </body>
+</html>
