@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            header {
+                border-radius: 50%;
+                border-bottom: 1px solid navy;
+            }
+
+            .head-link {
+                text-decoration: none;
+                color: black;
+            }
+
+            .head-link:hover {
+                color: #000099;
+                font-weight: 350;
+                text-decoration: none;
+            }
+
+            .nav-select:hover {
+                color: #000099 !important;
+                font-weight: 450;
+                text-decoration: none;
+            }
+
+            .previous {
+                /* display: none; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            
+            <!-- header for the entire website -->
+            <header class="row m-3 pb-3">
+                <h5 class="col-3 text-nowrap p-3 mb-0 my-auto font-weight-light">
+                 <a class="mb- head-link" href="./index.html">
+                    Student Grade Calculator
+                 </a>
+                 </h5>
+                 
+                 <ul class="nav col-9 justify-content-end my-auto space-between">
+                     <li class="nav-item  p-3"><button class="btn nav-select">Check Your Grades</button></li>
+                     <li class="nav-item p-3"><button onclick="previous()" class="btn nav-select">Previous Grades</button></li>
+                 </ul>
+
+            </header>
+
+            <p class="text-center date" id="date"></p>
+
+            <!-- grade input and evaluation form -->
+            <div class="row mt-5 mx-auto">
+               <div class="col-4 m-auto">
+
+                <!-- left side of the form -->
+                <div class="card-body">
+                    <p class="card-text">
+                        Your percentage is: <br>
+                        <span class="percent" id="percentage"></span>%
+                    </p>
+                    <br>
+                    <p class="card-text">
+                        Your grade is: <br>
+                        <span class="grade" id="grade"></span>
+                    </p>
+                </div>
+
+               </div>
+               <div class="col-6 card px-2">
+                
+                <h6 class="card-header">Enter your marks</h6>
+
+                <!-- inputs for each class -->
+                <div class="card-body pl-0 text-left">
+
+                    <span id="error" class="text-danger text-center"></span>
+
+                    <input class="my-1" type="text" name="math" id="first" placeholder="Math">
+                    <br>
+                  
+                    <input class="my-1" type="text" name="English" id="second" placeholder="Science">
+                    <br>
+                    
+                    <input class="my-1" type="text" name="English" id="third" placeholder="Physics">
+                    <br>
+                  
+                    <input class="my-1" type="text" name="English" id="fourth" placeholder="History">
+                    <br>
+                    
+                    <input class="my-1"y type="text" name="English" id="fifth" placeholder="English">
+                    
+                    <!-- button to submit -->
+                    <button class="btn float-right" onclick="handleSubmit()">submit</button>
+
+                </div>
+            
+               </div>
+
+               <!-- final remarks container -->
+               <p id="thoughts" class="m-auto p-2 text-center thoughts"></p>
+            </div>
+
+            <!-- previous grade container -->
+            <div class="previous row m-auto p-5">
+
+                <h6 class="col-12 text-center mb-4">Previous Grades</h6>
+                <div class="col-2 text-left m-auto">
+                    <p class="font-weight-light">Date</p>
+                 </div>
+             <div class="col text-center">
+                <p>Class 1</p>
+                <p>Grade</p>
+             </div>
+             <div class="col text-center">
+                <p>Class 2</p>
+                <p>Grade</p>
+             </div>
+             <div class="col text-center">
+                <p>Class 3</p>
+                <p>Grade</p>
+             </div>
+             <div class="col text-center">
+                <p>Class 4</p>
+                <p>Grade</p>
+             </div>
+             <div class="col text-center">
+                <p>Class 5</p>
+                <p>Grade</p>
+             </div>
+             <div class="col-2 text-right m-auto">
+                <p class="font-weight-light">Final</p>
+             </div>
+
+            </div>
+
+        <script>
+
+            // handling the saved data
+            savedGrades = [];
+            // function saveData(grades) {
+               
+            //     if (savedGrades.indexOf(grades) !== -1) {
+            //         return;
+            //     }
+            //     savedGrades.push(grades);
+
+            //     localStorage.setItem('grades', JSON.stringify(savedGrades));
+            // }
+
+            // the date
+            var dateVal = document.querySelector('.date');
+            const date = new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
+            dateVal.innerHTML = date;
+
+
+            // handle previous grade display
+            function previous() {
+                alert("Previous page loading...");
+                return;
+            }
+        
+            // gets the total and displays information
+            function getTotal() {
+                event.preventDefault();
+
+
+                var firstInp = Number(document.getElementById('first').value);
+
+                var secondInp = Number(document.getElementById('second').value);
+
+                var thirdInp = Number(document.getElementById('third').value);
+
+                var fourthInp = Number(document.getElementById('fourth').value);
+
+                var fifthInp = Number(document.getElementById('fifth').value);
+
+                var sum = firstInp + secondInp + thirdInp + fourthInp + fifthInp;
+
+                var finalSum = sum / 5;
+
+                var percent = document.querySelector('.grade');
+                var finalOutput = document.getElementById('grade');
+                var thoughts = document.querySelector('.thoughts');
+
+                if (finalSum <= 59 ) {
+                   
+                    percent.classList.add('text-danger')
+                    finalOutput.innerHTML = "F"
+                    document.getElementById('percentage').innerHTML = finalSum;
+                    thoughts.classList.add('text-danger');
+                    thoughts.innerHTML = "My my my, I know you can do better than that.";
+                } else if (finalSum <= 69) {
+
+                    percent.classList.add('text-dark');
+                    finalOutput.innerHTML = "D";
+                    document.getElementById('percentage').innerHTML = finalSum;
+                    thoughts.classList.add('text-dark');
+                    thoughts.innerHTML = "So close to worse position, pick it up young lad!";
+                } else if (finalSum <= 79) {
+
+                    percent.classList.add('text-warning');
+                    finalOutput.innerHTML = "C";
+                    document.getElementById('percentage').innerHTML = finalSum;
+                    thoughts.classList.add('text-warning');
+                    thoughts.innerHTML = "In the middle is a comfort zone, Get out of there!";
+                } else if (finalSum <=89) {
+                    
+                    percent.classList.add('text-primary');
+                    finalOutput.innerHTML = "B";
+                    document.getElementById('percentage').innerHTML = finalSum;
+                    thoughts.classList.add('text-primary');
+                    thoughts.innerHTML = "Good job, there's more for you though!";
+                } else if (finalSum <= 99) {
+
+                    percent.classList.add('text-success');
+                    finalOutput.innerHTML = "A"
+                    document.getElementById('percentage').innerHTML = finalSum;
+                    thoughts.classList.add('text-success');
+                    thoughts.innerHTML = "Well done, thy good and faithful servant!";
+                } else {
+                    var error = document.getElementById('error');
+                    error.innerHTML = "Only Numbers allowed"
+                }
+
+            }
+
+            // handle submit button
+            function handleSubmit() {
+                getTotal();
+                saveData();
+            }
+        </script>
+    </body>
+</html>
