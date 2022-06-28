@@ -1,6 +1,9 @@
+// basic function for handling a click
 function handleClick() {
+    // grabs the input 
     var inputVal = document.getElementById('input').value;
 
+    // if statement to check for an input to add to the TODO list, if none, run the error() function
     if (inputVal === "") {
         error();
     } else {
@@ -8,8 +11,10 @@ function handleClick() {
     }
 }
 
+// this variable is set at false and changes when there is an erro message present, toggling true and false
 var errDiv = false;
    
+// this function checks if the errDiv is true or false to easily manipulate the DOM's error message
 function error() {
         if (errDiv === true) {
             return;
@@ -17,6 +22,7 @@ function error() {
 
 }
 
+// this function will create an error message if there is nothing typed into the input val
 function createError() {
     var errContainer = document.getElementById('error-div');
     var errorNote = document.createElement('p');
@@ -28,6 +34,7 @@ function createError() {
     errDiv = true;
 }
 
+// function that checks if the error span for an invalid input is there, if so remove it and change errDiv = false;
 function divChecker() {
     var errContainer = document.getElementById('error-div');
 
@@ -37,52 +44,48 @@ function divChecker() {
     }
 }
 
-function addToList() {
-
+// this function is the base function for creating all essential items needed to create a new TO DO item.
+function addToList() {    
+    // check if the error div is present
     divChecker();
 
+    // get the input val
     var inputVal = document.getElementById('input').value;
 
-    var listContainer = document.getElementById('listContainer');
- 
-    var itemsContainer = document.createElement('div');
-    itemsContainer.classList.add('row');
-    itemsContainer.classList.add('border-bottom');
-    itemsContainer.classList.add('m-auto');
-    itemsContainer.classList.add('item-container');
- 
-    var textContainer = document.createElement('div');
-    textContainer.classList.add('col-7');
- 
-    var textList = document.createElement("p");
-    textList.classList.add('m-auto');
-    textList.classList.add('p-3');
- 
-    var text = document.createTextNode(inputVal);
- 
-    textList.appendChild(text);
- 
-    textContainer.appendChild(textList);
- 
-    itemsContainer.appendChild(textContainer);
- 
-    var btnContainer = document.createElement('div');
-    btnContainer.classList.add('col-5');
-    btnContainer.classList.add('my-auto');
- 
-    var editBtn = document.createElement('button');
-    editBtn.classList.add('btn');
-    editBtn.classList.add('btn-secondary');
-    editBtn.classList.add('alert-secondary');
- 
-    var editIcon = document.createElement('i');
-    editIcon.classList.add('fa-solid');
-    editIcon.classList.add('fa-pen-to-square');
- 
-    editBtn.appendChild(editIcon);
- 
-    btnContainer.appendChild(editBtn);
- 
+    // get the ul element
+    var listContainer = document.getElementById('ul');
+
+    // create a new li element with text
+    var listItem = document.createElement('li');
+    listItem.classList.add('text-center')
+    listTextVal = document.createTextNode(inputVal);
+    listItem.appendChild(listTextVal);
+
+    // span for the button section
+    var btnSpan = document.createElement('span');
+    btnSpan.classList.add('d-flex')
+    btnSpan.classList.add('justify-content-center');
+    btnSpan.classList.add('p-2');
+
+    // create new delete button with attribute + classes
+    var dltItem = document.createElement('button');
+    dltItem.setAttribute('type', 'button');
+    dltItem.classList.add('btn');
+    dltItem.classList.add('btn-danger');
+    dltItem.classList.add('alert-danger');
+
+    // create a new icon for the dlt button
+    var dltIcon = document.createElement('i');
+    dltIcon.classList.add('fa-solid');
+    dltIcon.classList.add('fa-xmark');
+    dltIcon.setAttribute('id', 'dlt');
+
+    // append dlt icon to dlt button , append dlt button to the btn span parent element
+    dltItem.appendChild(dltIcon);
+    btnSpan.appendChild(dltItem);
+    listItem.appendChild(btnSpan);
+
+    // future version wills will include a done btn and an edit task btn
     var doneBtn = document.createElement('button');
     doneBtn.classList.add('btn');
     doneBtn.classList.add('btn-success');
@@ -91,35 +94,20 @@ function addToList() {
     var doneIcon = document.createElement('i');
     doneIcon.classList.add('fa-solid');
     doneIcon.classList.add('fa-check');   
- 
-    doneBtn.appendChild(doneIcon);
- 
-    btnContainer.appendChild(doneBtn);
- 
-    var dltBtn = document.createElement('button');
-    dltBtn.classList.add('btn');
-    dltBtn.classList.add('btn-danger');
-    dltBtn.classList.add('alert-danger');
- 
-    var dltIcon = document.createElement('i');
-    dltIcon.classList.add('fa-solid');
-    dltIcon.classList.add('fa-xmark');
- 
+
+    var editBtn = document.createElement('button');
+    editBtn.classList.add('btn');
+    editBtn.classList.add('btn-secondary');
+    editBtn.classList.add('alert-secondary');
     
- 
-    dltBtn.appendChild(dltIcon);
- 
-    btnContainer.appendChild(dltBtn);
- 
-    itemsContainer.appendChild(btnContainer);
- 
-    listContainer.appendChild(itemsContainer);
+    var editIcon = document.createElement('i');
+    editIcon.classList.add('fa-solid');
+    editIcon.classList.add('fa-pen-to-square');
+    
+    editBtn.appendChild(editIcon);
 
-    console.log(errDiv);
- 
+    doneBtn.appendChild(doneIcon);
+
+    // connect final list to the ul element    
+    listContainer.appendChild(listItem);
 };
-
-
-function deleteItem() {
-    var listContainer = document.getElementById('item-container')
-}
