@@ -20,31 +20,22 @@
   </head>
 <body>
 <!--content start-->
-    <div class="container-fluid">
-        <div class="row header">
-          
-                <div class="col-12 mt-5">
-                    <h1 class="text-center heading">To Do List App</h1>
-                    <div class="my-4 text-center">
-                        <input class="todo-input" type="text" id="input" name="todo" placeholder="What's on your list?">
-                        <button type="button" id="addBtn" class="btn btn-primary" onclick="handleClick()">Add</button>
-                    </div>
-                    <div id="error-div"></div>
-                    
-                    
-                </div>
-                
-            </div>
+    <div id="wholeContainer" class="container container-top">
+      <h1 class="header heading text-center p-3">ToDo List App</h1>
+      <div id="err" class="text-center text-danger"></div>
 
-    <h1 class="my-5 p-3 text-center list-title m-auto">Here's what you gotta do:</h1>
-         
-  
-            <ul id="ul" class="ul list-unstyled w-50 m-auto p-2">
-              
-            </ul>
-            
-        </div>
-    </div>
+      <div class="text-center my-5">
+        <input type="text" name="val" id="myInput" class="w-50 m-2 border-none border" placeholder="what's on your plan?" required />
+        <button type="button" id="myBtn" class="btn btn-primary" onclick="newElement()">
+          Add
+        </button>
+
+      </div>
+
+      <div class="container mx-auto">
+        <ul class="list-group" id="myUL">
+        </ul>
+      </div>
         
     </div>
 
