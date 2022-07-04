@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <p id="text" class="text">Hello there, My name is Santiago Venegas.</p>
+
+        <button class="pBtn">Hide Paragraph</button>
+
+        <p>List 1</p>
+        <ul>
+            <li>chalks</li>
+            <li>chocolate</li>
+            <li>ice cream</li>
+            <li>tea</li>
+        </ul>
+
+        <p>List 2</p>
+        <ul>
+            <li>tomatoes</li>
+            <li>onions</li>
+            <li>celery</li>
+            <li>avacados</li>
+        </ul>
+
+        <button id="listBtn">Change the List</button>
+        <p>Hello World</p>
+
+        Name: <input type="text" name="fullname" id=""> <br>
+        Email: <input type="text" name="email" id=""> <br>
+
+        <script>
+        // examples of selecting
+
+        // $(this).hide();
+
+        // $("p").hide();
+
+        // $(".test").hide();
+
+        // $("#test").hide();
+
+        $('.pBtn').click( function() {
+            $('p').hide();
+        })
+
+        $('#listBtn').click(function() {
+            $('ul li:first-child').hide();
+        })
+
+        </script>
+        <script src="../events/events.js"></script>
+    </body>
+</html>

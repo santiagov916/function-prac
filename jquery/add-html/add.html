@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+
+        <p>This is a paragraph</p>
+        <p>This is another paragraph</p>
+
+        <ol>
+            <li>abc</li>
+            <li>abc</li>
+            <li>abc</li>
+            
+        </ol>
+
+        <button id="btn1">Append text</button>
+        <button id="btn2">Append list</button>
+        <button id="btn3">prepend text</button>
+        <button id="btn4">prepend list</button>
+        <button id="btn5">Add Text</button>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#btn1').click(function() {
+
+                  
+                    $('p').append('<b> Appended Text </b>')
+                });
+
+                $('#btn2').click(function() {
+                    $('ol').append('<li><b>Appended Item</b></li>')
+                })
+
+                $('#btn3').click(function() {
+                    $('p').prepend('<b>Appended text</b>')
+                })
+                
+                $('#btn4').click(function() {
+                    $('ol').prepend('<li><b>Appended Item</b></li>')
+                })
+
+                $('#btn5').click(function() {
+                    var txt2 = $("<p>").text('Text...');
+                    $('body').append(txt2);
+                })
+
+                // append()
+                // prepend()
+                // before()
+                // after()
+
+            })
+
+
+        </script>
+    </body>
+</html>
